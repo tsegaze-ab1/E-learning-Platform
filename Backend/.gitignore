@@ -1,0 +1,13 @@
+# Node/other
+node_modules/
+dist/
+build/
+
+# Env files (do not commit secrets)
+.env
+.env.*
+!.env.example
+
+# Firebase Admin credentials
+backend crdential/*.json
+*firebase-adminsdk*.json

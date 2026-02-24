@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+	color-scheme: dark;
+	--font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+		Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+	/* Design tokens */
+	--ds-bg: #020617;
+	--ds-surface: color-mix(in oklab, #0f172a 84%, #111827);
+	--ds-surface-2: color-mix(in oklab, #1e293b 70%, #0f172a);
+	--ds-text: #f8fafc;
+	--ds-muted: #94a3b8;
+	--ds-border: #334155;
+
+	--ds-primary-from: #f59e0b;
+	--ds-primary-to: #f97316;
+	--ds-primary-from-hover: #fbbf24;
+	--ds-primary-to-hover: #fb923c;
+
+	--ds-accent: #f59e0b;
+	--ds-accent-soft: color-mix(in oklab, #f59e0b 18%, #0f172a);
+
+	--ds-radius-sm: 10px;
+	--ds-radius-md: 12px;
+	--ds-radius-lg: 16px;
+
+	--ds-shadow-card: 0 2px 6px rgba(0, 0, 0, 0.24), 0 14px 30px rgba(0, 0, 0, 0.28);
+	--ds-shadow-float: 0 3px 10px rgba(0, 0, 0, 0.24), 0 20px 44px rgba(0, 0, 0, 0.36);
+	--ds-ring: 0 0 0 4px color-mix(in oklab, #f59e0b 20%, transparent);
+}
+
+:root[data-theme='light'] {
+	color-scheme: light;
+	--ds-bg: #f8fafc;
+	--ds-surface: #ffffff;
+	--ds-surface-2: #f1f5f9;
+	--ds-text: #0f172a;
+	--ds-muted: #475569;
+	--ds-border: #cbd5e1;
+	--ds-accent-soft: color-mix(in oklab, #f59e0b 14%, white);
+	--ds-shadow-card: 0 1px 2px rgba(15, 23, 42, 0.05), 0 10px 24px rgba(15, 23, 42, 0.06);
+	--ds-shadow-float: 0 2px 10px rgba(15, 23, 42, 0.06), 0 18px 44px rgba(15, 23, 42, 0.10);
+	--ds-ring: 0 0 0 4px color-mix(in oklab, #f59e0b 18%, transparent);
+}
+
+body {
+	@apply antialiased;
+	background: var(--ds-bg);
+	color: var(--ds-text);
+	font-family: var(--font-sans);
+	text-rendering: geometricPrecision;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+::selection {
+	@apply text-white;
+	background: linear-gradient(90deg, var(--ds-primary-from), var(--ds-primary-to));
+}
+
+a {
+	@apply underline-offset-4;
+}
+
+@layer base {
+	h1 {
+		@apply text-3xl font-semibold tracking-tight;
+		line-height: 1.15;
+	}
+	h2 {
+		@apply text-xl font-semibold tracking-tight;
+		line-height: 1.2;
+	}
+	h3 {
+		@apply text-base font-semibold;
+	}
+	p {
+		@apply text-sm leading-6;
+	}
+	.small {
+		@apply text-xs;
+	}
+}
+
+@layer utilities {
+	.ds-text-muted {
+		color: var(--ds-muted);
+	}
+	.ds-container {
+		@apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+	}
+	.ds-gradient {
+		background-image: linear-gradient(90deg, var(--ds-primary-from), var(--ds-primary-to));
+	}
+	.ds-gradient-hover:hover {
+		background-image: linear-gradient(90deg, var(--ds-primary-from-hover), var(--ds-primary-to-hover));
+	}
+}
+
+@layer components {
+	.ds-card {
+		background: var(--ds-surface);
+		border: 1px solid color-mix(in oklab, var(--ds-border) 80%, transparent);
+		border-radius: var(--ds-radius-lg);
+		box-shadow: var(--ds-shadow-card);
+		transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+	}
+	.ds-card-hover:hover {
+		box-shadow: var(--ds-shadow-float);
+		transform: translateY(-1px);
+	}
+
+	.ds-btn {
+		@apply inline-flex items-center justify-center gap-2 font-medium;
+		height: 40px;
+		padding: 0 16px;
+		border-radius: var(--ds-radius-md);
+		transition: transform 120ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+	}
+	.ds-btn:not(:disabled):hover {
+		transform: translateY(-0.5px);
+	}
+	.ds-btn:active {
+		transform: translateY(0.5px);
+	}
+	.ds-btn:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+	.ds-btn:focus-visible {
+		outline: none;
+		box-shadow: var(--ds-ring);
+	}
+
+	.ds-btn-primary {
+		color: #0f172a;
+		background-image: linear-gradient(90deg, var(--ds-primary-from), var(--ds-primary-to));
+		box-shadow: 0 10px 22px rgba(245, 158, 11, 0.22);
+	}
+	.ds-btn-primary:hover {
+		background-image: linear-gradient(90deg, var(--ds-primary-from-hover), var(--ds-primary-to-hover));
+		box-shadow: 0 12px 26px rgba(245, 158, 11, 0.28);
+	}
+
+	.ds-btn-secondary {
+		background: var(--ds-surface);
+		color: var(--ds-text);
+		border: 1px solid color-mix(in oklab, var(--ds-border) 92%, transparent);
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+	}
+	.ds-btn-secondary:hover {
+		background: var(--ds-surface-2);
+	}
+
+	.ds-btn-ghost {
+		background: transparent;
+		color: var(--ds-muted);
+	}
+	.ds-btn-ghost:hover {
+		background: color-mix(in oklab, var(--color-slate-800) 80%, transparent);
+		color: var(--ds-text);
+	}
+
+	.ds-btn-danger {
+		@apply text-white;
+		background: var(--color-red-600);
+	}
+	.ds-btn-danger:hover {
+		background: var(--color-red-700);
+	}
+
+	.ds-input {
+		@apply w-full text-sm;
+		background: var(--ds-surface);
+		color: var(--ds-text);
+		border: 1px solid color-mix(in oklab, var(--ds-border) 85%, transparent);
+		border-radius: var(--ds-radius-md);
+		padding: 0 12px;
+		height: 40px;
+		transition: box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
+	}
+	.ds-input::placeholder {
+		color: color-mix(in oklab, var(--ds-muted) 70%, #0f172a);
+	}
+	.ds-input:focus {
+		outline: none;
+		border-color: color-mix(in oklab, var(--color-indigo-500) 55%, var(--ds-border));
+		box-shadow: var(--ds-ring);
+	}
+	.ds-input:disabled {
+		background: color-mix(in oklab, var(--ds-bg) 86%, #111827);
+		color: color-mix(in oklab, var(--ds-muted) 85%, #111827);
+	}
+
+	.ds-textarea {
+		@apply w-full text-sm;
+		background: var(--ds-surface);
+		color: var(--ds-text);
+		border: 1px solid color-mix(in oklab, var(--ds-border) 85%, transparent);
+		border-radius: var(--ds-radius-md);
+		padding: 10px 12px;
+		transition: box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
+	}
+	.ds-textarea::placeholder {
+		color: color-mix(in oklab, var(--ds-muted) 65%, white);
+	}
+	.ds-textarea:focus {
+		outline: none;
+		border-color: color-mix(in oklab, var(--color-indigo-500) 55%, var(--ds-border));
+		box-shadow: var(--ds-ring);
+	}
+
+	.ds-badge {
+		@apply inline-flex items-center text-xs font-medium;
+		border-radius: 999px;
+		padding: 4px 10px;
+		border: 1px solid color-mix(in oklab, var(--ds-border) 80%, transparent);
+		background: color-mix(in oklab, var(--ds-bg) 82%, #0f172a);
+		color: var(--ds-muted);
+	}
+	.ds-badge-primary {
+		background: color-mix(in oklab, #f59e0b 18%, #0f172a);
+		border-color: color-mix(in oklab, #f59e0b 26%, var(--ds-border));
+		color: #fde68a;
+	}
+	.ds-badge-accent {
+		background: var(--ds-accent-soft);
+		border-color: color-mix(in oklab, var(--ds-accent) 22%, var(--ds-border));
+		color: color-mix(in oklab, var(--ds-accent) 55%, var(--ds-text));
+	}
+	.ds-badge-danger {
+		background: color-mix(in oklab, var(--color-red-500) 12%, white);
+		border-color: color-mix(in oklab, var(--color-red-500) 20%, var(--ds-border));
+		color: var(--color-red-700);
+	}
+}
