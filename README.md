@@ -1,4 +1,4 @@
-# C++ Premium E-Learning Platform
+# C++ Premium E-Learning Platfor
 
 A modern, premium SaaS-style e-learning platform designed for teaching C++ programming. The project features a beautiful, responsive frontend built with React and Tailwind CSS, and a robust, production-ready Express backend.
 
