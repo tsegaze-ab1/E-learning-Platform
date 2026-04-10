@@ -30,7 +30,7 @@ if (isCloudinaryEnvConfigured()) {
     });
   }
 } else {
-  // In production, we still avoid throwing to keep the server booting.
+  //In production, we still avoid throwing to keep the server booting.
   // Routes that require Cloudinary should fail explicitly when implemented.
   if (!env.isProd) {
     cloudinary.config({ secure: true });
