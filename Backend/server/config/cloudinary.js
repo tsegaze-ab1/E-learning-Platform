@@ -15,7 +15,7 @@ function isCloudinaryEnvConfigured() {
   );
 }
 
-//Safe config: no logging,no throws
+//Safe config: no logging, no throws
  Consumers can check `isCloudinaryConfigured`.
 if (isCloudinaryEnvConfigured()) {
   if (isNonEmpty(process.env.CLOUDINARY_URL)) {
